@@ -10,6 +10,10 @@ function M.create_angular_schematic()
   vim.ui.select(M.schematics, {
     prompt = 'Select which component you would like to create:'
   }, function(choice)
+    if choice == nil then
+      return
+    end
+
     -- ask for the name of the schematic
     vim.ui.input({ prompt = "Name of new " .. choice .. ":" }, function(input)
       local command = "cd '" .. folder .. "' && " .. "ng g " .. choice .. " " .. input
